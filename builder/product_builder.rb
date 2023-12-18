@@ -1,9 +1,12 @@
+# frozen_string_literal: true
+
 require_relative '../model/product'
 require 'json'
 
+PRODUCT_JSON = 'db/products.json'.freeze
 class ProductBuilder
   def self.product(code:)
-    file = File.read('db/products.json')
+    file = File.read(PRODUCT_JSON)
     products_data = JSON.parse(file)
 
     # Find product data by code
