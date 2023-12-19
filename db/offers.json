@@ -1,5 +1,16 @@
 [
-  { "bogo_offer": "GR1" },
-  { "bulk_discount": "SR1" },
-  { "discount": "CF1" }
+  {
+    "code": "bogo_offer",
+    "product_code": "GR1"
+  },
+  {
+    "code": "bulk_discount",
+    "product_code": "SR1",
+    "discount_price": 4.50,
+    "threshold_quantity": 3
+  },
+  {
+    "code": "discount",
+    "product_code": "CF1"
+  }
 ]
