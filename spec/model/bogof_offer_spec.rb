@@ -22,8 +22,17 @@ RSpec.describe BogofOffer do
       BogofOffer.new.apply_discount(cart_items)
 
       expect(cart_items[0].price).to eq 3.11 # First item is paid
-      expect(cart_items[1].price).to eq 3.11 # Second item is free
-      expect(cart_items[2].price).to eq 0.00 # Third item is paid
+      expect(cart_items[1].price).to eq 3.11 # Second item is paid
+      expect(cart_items[2].price).to eq 0.00 # Third item is free
+    end
+
+    it 'handle when just single item correctly' do
+      product = ProductBuilder.product(code: 'GR1')
+      cart_items = 1.times.map { CartItem.new(product, 1) }
+
+      BogofOffer.new.apply_discount(cart_items)
+
+      expect(cart_items[0].price).to eq 3.11 # First item is paid
     end
   end
 end
