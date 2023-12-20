@@ -15,7 +15,7 @@ class ProductBuilder
     if product_data
       Product.new(code: code, name: product_data['name'], price: product_data['price'])
     else
-      nil # or raise an error if product not found
+      raise "Product not found for code: #{code}"
     end
   end
 end

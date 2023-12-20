@@ -15,9 +15,8 @@ RSpec.describe ProductBuilder do
     end
 
     context 'when the product code does not exist' do
-      it 'returns nil' do
-        product = ProductBuilder.product(code: 'unknown')
-        expect(product).to be_nil
+      it 'raises an error' do
+        expect { ProductBuilder.product(code: 'unknown') }.to raise_error(RuntimeError, "Product not found for code: unknown")
       end
     end
   end
