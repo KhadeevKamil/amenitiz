@@ -5,21 +5,25 @@ require_relative 'cart_item'
 
 # Bulk Discount Offer
 class BulkDiscountOffer < Offer
-  BULK_OFFER_CODE = 'bulk_discount'.freeze
-
   def apply_discount(cart_items)
-    if cart_items.size >= threshold_quantity
-      cart_items.each { |cart_item| cart_item.price = discount_price }
+    items = cart_items.select { |cart_item| cart_item.product.code == product_code_for_offer }
+
+    if items.size >= threshold_quantity
+      items.each { |item| item.price = discount_price }
     end
   end
 
   private
 
+  def offer_code
+    'bulk_discount'
+  end
+
   def discount_price
-    offer_data(BULK_OFFER_CODE)['discount_price']
+    offer_data['discount_price']
   end
 
   def threshold_quantity
-    offer_data(BULK_OFFER_CODE)['threshold_quantity']
+    offer_data['threshold_quantity']
   end
 end

@@ -5,9 +5,12 @@ require_relative '../../builder/product_builder'
 
 RSpec.describe BogofOffer do
   describe '#apply_discount' do
+    let(:product) { ProductBuilder.product(code: 'GR1') }
+    let(:other_product) { ProductBuilder.product(code: 'SR1') }
+
     it 'applies buy-one-get-one-free discount correctly' do
-      product = ProductBuilder.product(code: 'GR1')
-      cart_items = 2.times.map { CartItem.new(product, 1) }
+      cart_items = 2.times.map { CartItem.new(product) }
+      cart_items += 2.times.map { CartItem.new(other_product) }
 
       BogofOffer.new.apply_discount(cart_items)
 
@@ -16,8 +19,8 @@ RSpec.describe BogofOffer do
     end
 
     it 'handles odd number of items correctly' do
-      product = ProductBuilder.product(code: 'GR1')
-      cart_items = 3.times.map { CartItem.new(product, 1) }
+      cart_items = 3.times.map { CartItem.new(product) }
+      cart_items += rand(2..10).times.map { CartItem.new(other_product) }
 
       BogofOffer.new.apply_discount(cart_items)
 
@@ -27,8 +30,8 @@ RSpec.describe BogofOffer do
     end
 
     it 'handle when just single item correctly' do
-      product = ProductBuilder.product(code: 'GR1')
-      cart_items = 1.times.map { CartItem.new(product, 1) }
+      cart_items = 1.times.map { CartItem.new(product) }
+      cart_items += 2.times.map { CartItem.new(other_product) }
 
       BogofOffer.new.apply_discount(cart_items)
 
