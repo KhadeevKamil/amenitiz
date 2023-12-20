@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'json'
+
 class Offer
   OFFERS_JSON = 'db/offers.json'
 

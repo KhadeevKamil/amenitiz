@@ -32,7 +32,7 @@ RSpec.describe BogofOffer do
     end
 
     it 'handle when just single item correctly' do
-      cart_items = CartItem.new(product)
+      cart_items = [CartItem.new(product)]
       cart_items += 2.times.map { CartItem.new(other_product) }
 
       BogofOffer.new.apply_discount(cart_items)
