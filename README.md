@@ -14,7 +14,9 @@ This Checkout Application is a Ruby-based command-line tool designed for simulat
 ## Setup and Installation
 
 **Clone the Repository**:
-`git clone git@github.com:KhadeevKamil/amenitiz.git`
+```bash
+git clone git@github.com:KhadeevKamil/amenitiz.git
+```
 
 ## Usage
 
