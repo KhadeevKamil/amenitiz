@@ -1,43 +1,38 @@
 # frozen_string_literal: true
 
+require 'json'
+require_relative '../model/bogof_offer'
+require_relative '../model/bulk_discount_offer'
+require_relative '../model/discount_offer'
+
 class OfferService
-  def initialize(json_file)
-    @offers = load_offers_from_json(json_file)
+  def initialize
+    @offers = load_offers
   end
 
   def apply_offers(cart_items)
-    cart_items.group_by(&:code).each do |code, items|
-      offer = find_offer_for_product(code)
-      offer&.apply_discount(items)
+    @offers.each do |offer|
+      offer.apply_discount(cart_items)
     end
   end
 
   private
 
-  def load_offers_from_json(json_file)
-    file = File.read(json_file)
+  def load_offers
+    file = File.read(Offer::OFFERS_JSON)
     offers_data = JSON.parse(file)
 
     offers_data.map do |offer_data|
-      offer_type, product_code = offer_data.to_a.first
-      [product_code, create_offer_instance(offer_type)]
-    end.to_h
-  end
-
-  def find_offer_for_product(product_code)
-    @offers[product_code]
-  end
-
-  def create_offer_instance(offer_type)
-    case offer_type
-    when 'bogo_offer'
-      BogofOffer.new
-    when 'bulk_discount'
-      BulkDiscountOffer.new
-    when 'discount'
-      DiscountOffer.new
-    else
-      nil
+      case offer_data['code']
+      when 'bogof_offer'
+        BogofOffer.new
+      when 'bulk_discount'
+        BulkDiscountOffer.new
+      when 'discount'
+        DiscountOffer.new
+      else
+        raise "Unknown offer type: #{offer_data['code']}"
+      end
     end
   end
 end

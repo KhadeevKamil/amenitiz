@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../model/bulk_discount_offer'
 require_relative '../../model/cart_item'
 require_relative '../../model/product'
