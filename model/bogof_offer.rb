@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require_relative 'offer'
 require_relative 'cart_item'
 
@@ -15,11 +16,11 @@ class BogofOffer < Offer
     # Adjust price based on the number of paid items
     # Set the price of free items to 0
     items.each_with_index do |item, index|
-      if index >= paid_items
-        item.price = 0
-      else
-        item.price = item.product.price
-      end
+      item.price = if index >= paid_items
+                     0
+                   else
+                     item.product.price
+                   end
     end
 
     items

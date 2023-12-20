@@ -8,9 +8,9 @@ class BulkDiscountOffer < Offer
   def apply_discount(cart_items)
     items = cart_items.select { |cart_item| cart_item.product.code == product_code_for_offer }
 
-    if items.size >= threshold_quantity
-      items.each { |item| item.price = discount_price }
-    end
+    return unless items.size >= threshold_quantity
+
+    items.each { |item| item.price = discount_price }
   end
 
   private

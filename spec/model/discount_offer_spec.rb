@@ -19,7 +19,7 @@ RSpec.describe DiscountOffer do
 
         applicable_items = cart_items.select { |item| item.product.code == product.code }
         applicable_items.each do |cart_item|
-          expect(cart_item.price).to eq (11.23 * (2.0 / 3.0))
+          expect(cart_item.price).to eq(11.23 * (2.0 / 3.0))
         end
       end
     end

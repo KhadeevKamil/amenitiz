@@ -3,7 +3,7 @@
 require_relative '../model/product'
 require 'json'
 
-PRODUCT_JSON = 'db/products.json'.freeze
+PRODUCT_JSON = 'db/products.json'
 class ProductBuilder
   def self.product(code:)
     file = File.read(PRODUCT_JSON)
@@ -12,10 +12,8 @@ class ProductBuilder
     # Find product data by code
     product_data = products_data.find { |p| p['code'] == code }
 
-    if product_data
-      Product.new(code: code, name: product_data['name'], price: product_data['price'])
-    else
-      raise "Product not found for code: #{code}"
-    end
+    raise "Product not found for code: #{code}" unless product_data
+
+    Product.new(code: code, name: product_data['name'], price: product_data['price'])
   end
 end

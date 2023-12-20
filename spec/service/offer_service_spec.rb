@@ -10,7 +10,7 @@ RSpec.describe OfferService do
 
   let(:green_tea) { ProductBuilder.product(code: 'GR1') }
   let(:strawberries) { ProductBuilder.product(code: 'SR1') }
-  let(:coffee) {ProductBuilder.product(code: 'CF1') }
+  let(:coffee) { ProductBuilder.product(code: 'CF1') }
 
   describe '#initialize' do
     it 'loads offers from the JSON file' do
@@ -40,7 +40,7 @@ RSpec.describe OfferService do
         cart_items = 3.times.map { CartItem.new(coffee) }
         offer_service.apply_offers(cart_items)
         discounted_price = (11.23 * 2 / 3).round(2)
-        expect(cart_items.map{ |item| item.price.round(2) }.uniq).to eq([discounted_price])
+        expect(cart_items.map { |item| item.price.round(2) }.uniq).to eq([discounted_price])
       end
     end
   end

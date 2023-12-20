@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Offer
-  OFFERS_JSON = 'db/offers.json'.freeze
+  OFFERS_JSON = 'db/offers.json'
 
   def apply_discount(products)
     raise NotImplementedError, 'Subclasses must implement this method'

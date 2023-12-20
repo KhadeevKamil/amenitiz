@@ -16,7 +16,9 @@ RSpec.describe CheckoutService do
   describe '#scan' do
     context 'when a valid product code is provided' do
       it 'adds the product to the cart' do
-        expect { checkout_service.scan('GR1') }.to change { checkout_service.instance_variable_get(:@cart_items).length }.by(1)
+        expect { checkout_service.scan('GR1') }.to change {
+                                                     checkout_service.instance_variable_get(:@cart_items).length
+                                                   }.by(1)
       end
     end
 
