@@ -28,6 +28,6 @@ class DiscountOffer < Offer
   end
 
   def calculate_discounted_price(original_price)
-    (original_price * discounted_price).round(2)
+    original_price * discounted_price
   end
 end

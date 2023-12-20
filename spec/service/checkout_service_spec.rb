@@ -68,7 +68,7 @@ RSpec.describe CheckoutService do
         it 'applies discount to coffees and normal price for green tea' do
           3.times { checkout_service.scan('CF1') }
           checkout_service.scan('GR1')
-          discounted_coffee_price = (11.23 * 2 / 3).round(2)
+          discounted_coffee_price = (11.23 * 2 / 3)
           expect(checkout_service.total).to eq(discounted_coffee_price * 3 + 3.11)
         end
       end
@@ -98,7 +98,7 @@ RSpec.describe CheckoutService do
     context 'when purchasing only three coffees' do
       it 'applies a discount to all coffees' do
         3.times { checkout_service.scan('CF1') }
-        discounted_coffee_price = (11.23 * 2 / 3).round(2)
+        discounted_coffee_price = (11.23 * 2 / 3)
         expect(checkout_service.total).to eq(discounted_coffee_price * 3)
       end
     end

@@ -19,6 +19,6 @@ class CheckoutService
 
   def total
     @offer_service.apply_offers(@cart_items)
-    @cart_items.sum(&:price).round(2)
+    @cart_items.sum(&:price)
   end
 end
