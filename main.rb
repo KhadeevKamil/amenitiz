@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'service/checkout_service'
 
 puts 'Welcome to the Checkout System'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../service/checkout_service'
 require_relative '../../service/offer_service'
 require_relative '../../model/cart_item'
@@ -80,7 +82,7 @@ RSpec.describe CheckoutService do
       it 'returns the correct total with various offers applied' do
         2.times { checkout_service.scan('GR1') } # One should be free (BOGOF)
         3.times { checkout_service.scan('SR1') } # Bulk discount applies
-        1.times { checkout_service.scan('CF1') }
+        checkout_service.scan('CF1')
         expected_total = 3 * 4.5 + ProductBuilder.product(code: 'CF1').price + ProductBuilder.product(code: 'GR1').price
         expect(checkout_service.total).to eq(expected_total)
       end

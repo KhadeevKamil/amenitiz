@@ -21,7 +21,7 @@ class DiscountOffer < Offer
 
   def discounted_price
     discount_price = offer_data['discounted_price']
-    discount_price.first.to_f / discount_price.last.to_f
+    discount_price.first.to_f / discount_price.last
   end
 
   def threshold_quantity

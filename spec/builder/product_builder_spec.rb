@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../builder/product_builder'
 require_relative '../../model/product'
 require 'json'
