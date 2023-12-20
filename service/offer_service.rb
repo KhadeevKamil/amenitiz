@@ -4,6 +4,7 @@ require 'json'
 require_relative '../model/bogof_offer'
 require_relative '../model/bulk_discount_offer'
 require_relative '../model/discount_offer'
+require_relative '../model/concerns/offer_context'
 
 class OfferService
   def initialize
@@ -12,7 +13,8 @@ class OfferService
 
   def apply_offers(cart_items)
     @offers.each do |offer|
-      offer.apply_discount(cart_items)
+      offer_context = OfferContext.new(offer)
+      offer_context.apply_offer(cart_items)
     end
   end
 
